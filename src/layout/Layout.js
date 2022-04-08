@@ -31,7 +31,7 @@ const Layout = (props) => {
                   سبد خرید
                 </span>
               </Button>
-              <Link to="/admin" className="text-decoration-none" >
+              <Link to="/admin/orders" className="text-decoration-none" >
                 <Button variant="text">
                   <span className="vazir-medium" >
                     مدیریت
@@ -42,7 +42,7 @@ const Layout = (props) => {
             <Link to="/" className="text-decoration-none text-dark" >
               <div className="d-flex align-items-center justify-content-center">
                 <span className="mx-2 vazir-bold">
-                  فروشگاه فلان
+                  {props.admin ? "پنل مدیریت فروشگاه" : "فروشگاه فلان"}
                 </span>
                 <img src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" className="d-inline-block align-text-top" />
               </div>

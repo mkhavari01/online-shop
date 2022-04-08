@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
-import { fetchCategory } from "../../redux/actions/categoryActions";
+import { fetchProducts } from "../../redux/actions/productsActions";
 import { useSelector } from "react-redux";
 import { Layout } from '../../layout/Layout'
 
@@ -35,5 +35,5 @@ const mapStateToProps = state => ({
   categories: state.categories.items
 })
 
-const Home = connect(mapStateToProps, { fetchCategory })(HomeComponent)
+const Home = connect(mapStateToProps, { fetchProducts })(HomeComponent)
 export { Home }
