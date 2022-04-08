@@ -1,11 +1,14 @@
 import { useEffect } from "react"
 import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
-import { fetchCategory } from "../../redux/actions/categoryActions"
+import { fetchCategory } from "../../redux/actions/categoryActions";
+import { useSelector } from "react-redux";
 
 const HomeComponent = (props) => {
+  const state = useSelector(state => state)
   useEffect(()=>{
     props.fetchCategory();
+    console.log('state',state)
   },[])
   return (
     <>

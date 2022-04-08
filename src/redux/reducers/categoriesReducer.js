@@ -5,10 +5,9 @@ const initialState = {
   item: {},
 }
 
-export default function categoriesReducer (state = initialState, action) {
-  switch(action.type){
+export default function categoriesReducer(state = initialState, action) {
+  switch (action.type) {
     case FETCH_CATEGORY:
-      console.log('reducer is calling',action,state)
       return {
         ...state,
         items: action.payload
