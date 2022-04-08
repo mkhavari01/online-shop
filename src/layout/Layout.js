@@ -7,8 +7,25 @@ const Layout = (props) => {
     <>
       <nav className="navbar navbar-light bg-light">
         <div className="container-fluid justify-content-end">
-          <div className="navbar-brand d-flex align-items-center w-100 justify-content-between" href="#">
-            <div className="d-flex align-items-center justify-content-center">
+          <div className="navbar-brand d-flex align-items-center w-100 justify-content-between">
+            {props.admin ? <>
+              <Link to="/" className="text-decoration-none" >
+                <Button variant="text">
+                  <span className="vazir-medium" >
+                    بازگشت به سایت
+                  </span>
+                </Button>
+              </Link>
+              <div className="d-flex align-items-center justify-content-center">
+                <nav aria-label="Page navigation example">
+                  <ul className="pagination m-0">
+                    <li className="page-item"><Link className="page-link vazir-light fs-6" to="orders">سفارش ها</Link></li>
+                    <li className="page-item"><Link className="page-link vazir-light fs-6" to="entity">موجودی و قیمت ها</Link></li>
+                    <li className="page-item"><Link className="page-link vazir-light fs-6" to="products">کالاها</Link></li>
+                  </ul>
+                </nav>
+              </div>
+            </> : <div className="d-flex align-items-center justify-content-center">
               <Button variant="text">
                 <span className="vazir-medium" >
                   سبد خرید
@@ -21,7 +38,7 @@ const Layout = (props) => {
                   </span>
                 </Button>
               </Link>
-            </div>
+            </div>}
             <Link to="/" className="text-decoration-none text-dark" >
               <div className="d-flex align-items-center justify-content-center">
                 <span className="mx-2 vazir-bold">

@@ -3,19 +3,22 @@ import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
 import { fetchCategory } from "../../redux/actions/categoryActions";
 import { useSelector } from "react-redux";
+import { Layout } from '../../layout/Layout'
 
 const HomeComponent = (props) => {
   const state = useSelector(state => state)
-  useEffect(()=>{
+  useEffect(() => {
     props.fetchCategory();
-    console.log('state',state)
-  },[])
+    console.log('state', state)
+  }, [])
   return (
     <>
-      <h1>Home</h1>
-      {props.categories.map((el,index)=>{
-        return <li key={el.id} >{index}</li>
-      })}
+      <Layout>
+        <h1>Home</h1>
+        {props.categories.map((el, index) => {
+          return <li key={el.id} >{index}</li>
+        })}
+      </Layout>
     </>
   )
 }
@@ -29,7 +32,7 @@ HomeComponent.propTypes = {
 
 // export default connect(null, { fetchPosts })(Home)
 const mapStateToProps = state => ({
-  categories : state.categories.items
+  categories: state.categories.items
 })
 
 const Home = connect(mapStateToProps, { fetchCategory })(HomeComponent)
