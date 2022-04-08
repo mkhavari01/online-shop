@@ -33,3 +33,11 @@
 .vazir-medium {
   font-family: "vazir-medium";
 }
+
+.cursur-pointer {
+  cursor: pointer;
+}
+
+.cursur-defualt {
+  cursor: default ;
+}
