@@ -14,7 +14,7 @@ const Layout = (props) => {
                   سبد خرید
                 </span>
               </Button>
-              <Link to="/login" className="text-decoration-none" >
+              <Link to="/admin" className="text-decoration-none" >
                 <Button variant="text">
                   <span className="vazir-medium" >
                     مدیریت
