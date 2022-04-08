@@ -1,13 +1,13 @@
-import { FETCH_POSTS, NEW_POST } from "../actions/types";
+import { FETCH_CATEGORY, NEW_POST } from "../actions/types";
 
 const initialState = {
   items: [],
   item: {}
 }
 
-export default function (state = initialState, action) {
+export default function categoriesReducer (state = initialState, action) {
   switch(action.type){
-    case FETCH_POSTS:
+    case FETCH_CATEGORY:
       console.log('reducer is calling',action,state)
       return {
         ...state,

@@ -1,16 +1,16 @@
 import { useEffect } from "react"
 import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
-import { fetchPosts } from "../../redux/actions/postActions"
+import { fetchCategory } from "../../redux/actions/categoryActions"
 
 const HomeComponent = (props) => {
   useEffect(()=>{
-    props.fetchPosts();
+    props.fetchCategory();
   },[])
   return (
     <>
       <h1>Home</h1>
-      {props.posts.map((el,index)=>{
+      {props.categories.map((el,index)=>{
         return <li key={el.id} >{index}</li>
       })}
     </>
@@ -18,16 +18,16 @@ const HomeComponent = (props) => {
 }
 
 HomeComponent.propTypes = {
-  fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired
+  fetchCategory: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired
 }
 
 // export {Home}
 
 // export default connect(null, { fetchPosts })(Home)
 const mapStateToProps = state => ({
-  posts : state.posts.items
+  categories : state.categories.items
 })
 
-const Home = connect(mapStateToProps, { fetchPosts })(HomeComponent)
+const Home = connect(mapStateToProps, { fetchCategory })(HomeComponent)
 export { Home }
