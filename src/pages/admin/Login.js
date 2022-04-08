@@ -1,21 +1,32 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../redux/actions/authAction";
 
 const Login = (props) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const state = useSelector(state => state)
 
-  useEffect(()=>{
-    setTimeout(() => {
-      navigate("/")
-    }, 4000);
-  },[])
+  useEffect(() => {
+    if (state.auth.token) {
+      setTimeout(() => {
+        navigate("/")
+      }, 4000)
+    }
+  }, [state.auth.token])
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(username, password)
+    console.log(username, password);
+    dispatch(signUp({
+      username: username,
+      password: password
+    }))
   }
 
   return (

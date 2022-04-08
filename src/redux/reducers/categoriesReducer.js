@@ -1,8 +1,8 @@
-import { FETCH_CATEGORY, NEW_POST } from "../actions/types";
+import { FETCH_CATEGORY } from "../actions/types";
 
 const initialState = {
   items: [],
-  item: {}
+  item: {},
 }
 
 export default function categoriesReducer (state = initialState, action) {
