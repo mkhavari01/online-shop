@@ -41,3 +41,8 @@
 .cursur-defualt {
   cursor: default ;
 }
+
+.MuiFormControlLabel-label {
+  font-family: "vazir-medium" !important;
+  font-size: 14px !important;
+}
