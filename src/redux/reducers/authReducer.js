@@ -1,7 +1,10 @@
-import { SIGN_UP } from "../actions/types"
+import { SIGN_UP,CHECK_TOKEN } from "../actions/types"
 
 const initialState = {
   token: localStorage.getItem('token'),
+  username: localStorage.getItem('username'),
+  password : localStorage.getItem('password'),
+  checkToken : false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -9,7 +12,15 @@ const authReducer = (state = initialState, action) => {
     case SIGN_UP:
       return {
         ...state,
-        token: action.payload
+        username: action.payload.username,
+        password : action.payload.password,
+        token: action.payload.token,
+        checkToken: action.payload.checkToken,
+      }
+    case CHECK_TOKEN:
+      return {
+        ...state,
+        checkToken : action.payload
       }
     default:
       return state
