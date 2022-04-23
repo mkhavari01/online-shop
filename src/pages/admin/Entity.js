@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { fetchProducts } from "../../redux/actions/productsActions";
-import { Pagination } from "../../components/Pagination";
-import { TableGrid } from "../../components/TableGrid";
+import { fetchProducts } from "redux/actions/productsActions";
+import { Pagination } from "components/Pagination";
+import { TableGrid } from "components/TableGrid";
 
 const Entity = (props) => {
   const state = useSelector(state => state)

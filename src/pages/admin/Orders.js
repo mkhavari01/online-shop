@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { fetchOrders } from "../../redux/actions/ordersAction";
-import { Pagination } from "../../components/Pagination";
-import { TableGrid } from "../../components/TableGrid";
+import { fetchOrders } from "redux/actions/ordersAction";
+import { Pagination } from "components/Pagination";
+import { TableGrid } from "components/TableGrid";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';

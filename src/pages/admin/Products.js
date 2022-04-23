@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
-import { fetchProducts } from "../../redux/actions/productsActions";
-import { Pagination } from "../../components/Pagination";
-import { TableGrid } from "../../components/TableGrid";
+import { fetchProducts } from "redux/actions/productsActions";
+import { Pagination } from "components/Pagination";
+import { TableGrid } from "components/TableGrid";
 import Button from '@mui/material/Button';
-
+import { DialogForm } from "components/DialogForm";
 
 const Products = (props) => {
   const state = useSelector(state => state)
   return (
     <>
       <section className="container mt-4" >
+        {/* <DialogForm /> */}
         <div className="d-flex align-items-center justify-content-between">
           <Button variant="contained" className="mb-4" color="success">
             <span className=" vazir-medium" >

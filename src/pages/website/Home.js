@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 // import { PropTypes } from "prop-types"
 // import { connect } from "react-redux"
-// import { fetchProducts } from "../../redux/actions/productsActions";
+// import { fetchProducts } from "redux/actions/productsActions";
 import { useSelector } from "react-redux";
-import { Layout } from '../../layout/Layout'
+import { Layout } from 'layout/Layout'
 
 const Home = (props) => {
   const state = useSelector(state => state)
