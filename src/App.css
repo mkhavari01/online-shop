@@ -19,19 +19,19 @@
 }
 
 .vazir-bold {
-  font-family: "vazir-bold";
+  font-family: "vazir-bold" !important;
 }
 
 .vazir-light {
-  font-family: "vazir-light";
+  font-family: "vazir-light" !important;
 }
 
 .vazir-thin {
-  font-family: "vazir-thin";
+  font-family: "vazir-thin" !important;
 }
 
 .vazir-medium {
-  font-family: "vazir-medium";
+  font-family: "vazir-medium" !important;
 }
 
 .cursur-pointer {

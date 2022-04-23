@@ -12,11 +12,12 @@ const Products = (props) => {
       <section className="container mt-4" >
         {/* <DialogForm /> */}
         <div className="d-flex align-items-center justify-content-between">
-          <Button variant="contained" className="mb-4" color="success">
-            <span className=" vazir-medium" >
+          {/* <Button variant="contained" className="mb-4" color="success"> */}
+            {/* <span className=" vazir-medium" >
               افزودن کالا 
-            </span>
-          </Button>
+            </span> */}
+            <DialogForm btnName={"افزودن کالا"} />
+          {/* </Button> */}
           <h1 className="h1 vazir-bold text-end mb-5 text-primary p-2 rounded px-4">
             مدیریت کالاها
           </h1>
