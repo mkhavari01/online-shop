@@ -16,7 +16,7 @@ const Products = (props) => {
             {/* <span className=" vazir-medium" >
               افزودن کالا 
             </span> */}
-            <DialogForm btnName={"افزودن کالا"} />
+            <DialogForm btnName={"افزودن کالا"} headerTitle={"افزودن / ویرایش کالا"} />
           {/* </Button> */}
           <h1 className="h1 vazir-bold text-end mb-5 text-primary p-2 rounded px-4">
             مدیریت کالاها

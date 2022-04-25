@@ -14,7 +14,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const DialogForm = ({ btnName }) => {
+const DialogForm = ({ btnName,headerTitle }) => {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
@@ -48,21 +48,17 @@ const DialogForm = ({ btnName }) => {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="scroll-dialog-title" className='text-end vazir-medium'>{headerTitle}</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            {[...new Array(50)]
-              .map(
-                () => `Cras mattis consectetur purus sit amet fermentum.
-                  Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-                  Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                  Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
-              )
-              .join('\n')}
+            <div className="mb-3">
+              <label for="formFile" className="form-label">Default file input example</label>
+              <input className="form-control" type="file" id="formFile" />
+            </div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
