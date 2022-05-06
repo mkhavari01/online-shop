@@ -13,8 +13,20 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import { UilCameraPlus } from '@iconscout/react-unicons'
+import TextField from '@mui/material/TextField';
+import AutoComplete from 'components/AutoComplete'
+import EditorTxt from './EditorTxt';
 
-const DialogForm = ({ btnName,headerTitle }) => {
+
+const Input = styled('input')({
+  display: 'none',
+  textAlign: "right"
+});
+
+const DialogForm = ({ btnName, headerTitle }) => {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
 
@@ -55,15 +67,26 @@ const DialogForm = ({ btnName,headerTitle }) => {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <div className="mb-3">
-              <label for="formFile" className="form-label">Default file input example</label>
-              <input className="form-control" type="file" id="formFile" />
-            </div>
+            <Stack direction="row" alignItems="center" spacing={2} className="justify-content-end">
+              <label htmlFor="contained-button-file">
+                <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                <Button variant="contained" component="span">
+                  <UilCameraPlus />
+                </Button>
+                <span className='h5 vazir-medium m-2'>
+                  : انتخاب عکس
+                </span>
+              </label>
+            </Stack>
+            <hr />
+            <TextField id="name-product" hiddenLabel={true} variant="filled" placeholder="نام کالا" fullWidth />
+            <AutoComplete />
+            <EditorTxt />
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+        <DialogActions className='justify-content-start mx-3'>
+          <Button className='vazir-medium' variant="contained" color="success" onClick={handleClose}>ذخیره</Button>
+          <Button className='vazir-light' variant="outlined" color="error" onClick={handleClose}>انصراف</Button>
         </DialogActions>
       </Dialog>
     </div>
