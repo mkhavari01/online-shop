@@ -11,6 +11,7 @@ import { UilCameraPlus } from '@iconscout/react-unicons'
 import TextField from '@mui/material/TextField';
 import AutoComplete from 'components/AutoComplete'
 import EditorTxt from './EditorTxt';
+import InputPhoto from './InputPhoto';
 
 
 const Input = styled('input')({
@@ -81,17 +82,7 @@ const DialogForm = ({ btnName, headerTitle }) => {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <Stack direction="row" alignItems="center" spacing={2} className="justify-content-end">
-              <label htmlFor="contained-button-file">
-                <Input accept="image/*" id="image-product" multiple type="file" />
-                <Button variant="contained" component="span">
-                  <UilCameraPlus />
-                </Button>
-                <span className='h5 vazir-medium m-2'>
-                  : انتخاب عکس
-                </span>
-              </label>
-            </Stack>
+            <InputPhoto />
             <TextField id="name-product" hiddenLabel={true} variant="filled" placeholder="نام کالا" fullWidth className='mt-3' value={nameProduct} onChange={(e)=>setNameProduct(e.target.value)} />
             <AutoComplete passData={handleAutoCompleteValue} />
             <EditorTxt passData={handleDescriptionValue} />
