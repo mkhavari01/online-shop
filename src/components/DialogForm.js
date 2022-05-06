@@ -6,8 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { styled } from '@mui/material/styles';
-import Stack from '@mui/material/Stack';
-import { UilCameraPlus } from '@iconscout/react-unicons'
 import TextField from '@mui/material/TextField';
 import AutoComplete from 'components/AutoComplete'
 import EditorTxt from './EditorTxt';
@@ -74,7 +72,6 @@ const DialogForm = ({ btnName, headerTitle }) => {
   return (
     <div>
       <Button className='text-white vazir-medium mb-4' variant="contained" color="success" onClick={handleClickOpen('paper')}>{btnName}</Button>
-      {/* <Button onClick={handleClickOpen('body')}>scroll=body</Button> */}
       <Dialog
         open={open}
         onClose={handleClose}

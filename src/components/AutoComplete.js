@@ -2,6 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector } from 'react-redux';
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -13,7 +14,9 @@ export default function AutoComplete(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
+  const data = useSelector(state => state)
 
+  console.log('data is',data)
 
   function handleChange(e){
     props.passData(e.target.textContent);
