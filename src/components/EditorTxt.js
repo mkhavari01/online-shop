@@ -29,6 +29,7 @@ const EditorTxt = (props) => {
     setConvertedContent(currentContentAsHTML);
     //save below content
     // console.log(convertedContent);
+    props.passData(currentContentAsHTML)
   }
 
   const createMarkup = (html) => {

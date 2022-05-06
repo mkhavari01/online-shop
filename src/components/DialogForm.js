@@ -1,11 +1,3 @@
-// const DialogForm = () => {
-//   return (
-//     <h1>this is dialog component</h1>
-//   )
-// }
-
-// export { DialogForm }
-
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -29,6 +21,9 @@ const Input = styled('input')({
 const DialogForm = ({ btnName, headerTitle }) => {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
+  const [nameProduct,setNameProduct] = React.useState("")
+  const [nameCategory,setNameCategory] = React.useState("")
+  const [descriptionProduct,setDescriptionProduct] = React.useState("")
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -36,6 +31,9 @@ const DialogForm = ({ btnName, headerTitle }) => {
   };
 
   const handleClose = () => {
+    setNameProduct("")
+    setNameCategory("")
+    setDescriptionProduct("")
     setOpen(false);
   };
 
@@ -48,6 +46,22 @@ const DialogForm = ({ btnName, headerTitle }) => {
       }
     }
   }, [open]);
+
+  const handleAutoCompleteValue = (data) => {
+    setNameCategory(data)
+  }
+
+  const handleDescriptionValue = (data) => {
+    setDescriptionProduct(data);
+  }
+
+  const handleSave = () => {
+    console.log('handle save',{
+      productName : nameProduct,
+      categoryName : nameCategory,
+      description : descriptionProduct
+    })
+  }
 
   return (
     <div>
@@ -69,7 +83,7 @@ const DialogForm = ({ btnName, headerTitle }) => {
           >
             <Stack direction="row" alignItems="center" spacing={2} className="justify-content-end">
               <label htmlFor="contained-button-file">
-                <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                <Input accept="image/*" id="image-product" multiple type="file" />
                 <Button variant="contained" component="span">
                   <UilCameraPlus />
                 </Button>
@@ -78,14 +92,13 @@ const DialogForm = ({ btnName, headerTitle }) => {
                 </span>
               </label>
             </Stack>
-            <hr />
-            <TextField id="name-product" hiddenLabel={true} variant="filled" placeholder="نام کالا" fullWidth />
-            <AutoComplete />
-            <EditorTxt />
+            <TextField id="name-product" hiddenLabel={true} variant="filled" placeholder="نام کالا" fullWidth className='mt-3' value={nameProduct} onChange={(e)=>setNameProduct(e.target.value)} />
+            <AutoComplete passData={handleAutoCompleteValue} />
+            <EditorTxt passData={handleDescriptionValue} />
           </DialogContentText>
         </DialogContent>
         <DialogActions className='justify-content-start mx-3'>
-          <Button className='vazir-medium' variant="contained" color="success" onClick={handleClose}>ذخیره</Button>
+          <Button className='vazir-medium' variant="contained" color="success" onClick={handleSave}>ذخیره</Button>
           <Button className='vazir-light' variant="outlined" color="error" onClick={handleClose}>انصراف</Button>
         </DialogActions>
       </Dialog>

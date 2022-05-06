@@ -9,10 +9,15 @@ function sleep(delay = 0) {
   });
 }
 
-export default function AutoComplete() {
+export default function AutoComplete(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
+
+
+  function handleChange(e){
+    props.passData(e.target.textContent);
+  }
 
   React.useEffect(() => {
     let active = true;
@@ -22,7 +27,7 @@ export default function AutoComplete() {
     }
 
     (async () => {
-      await sleep(1e3); // For demo purposes.
+      await sleep(1); // For demo purposes.
 
       if (active) {
         setOptions([...topFilms]);
@@ -42,6 +47,7 @@ export default function AutoComplete() {
 
   return (
     <Autocomplete
+      onChange={e=>handleChange(e)}
       className='mt-3'
       id="asynchronous-demo"
       // sx={{ width: 300 }}
