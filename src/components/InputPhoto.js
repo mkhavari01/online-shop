@@ -6,22 +6,28 @@ import { useState } from 'react';
 
 
 const Input = styled('input')({
-  display: 'none',
-  textAlign: "right"
+  display: 'block',
+  position: 'absolute',
+  textAlign: "right",
+  left: '-43px',
+  opacity: '0',
+  width: '240px',
+  padding: '5px',
 });
 
-const InputPhoto = () => {
+const InputPhoto = (props) => {
 
   const [inputData,setInputData] = useState({});
   const [previewSrc,setPreviewSrc] = useState("");
 
   function handleChange(e){
     setInputData(e.target.files[0]);
-    setPreviewSrc(URL.createObjectURL(e.target.files[0]))
+    setPreviewSrc(URL.createObjectURL(e.target.files[0]));
+    props.passData(e.target.files[0]);
   }
 
   return (
-    <Stack direction="row" alignItems="center" spacing={2} className="justify-content-end">
+    <Stack direction="row" alignItems="center" spacing={2} className={previewSrc ? "justify-content-around border p-1" : "justify-content-end" }>
       <img src={previewSrc} width="200" />
       <label htmlFor="contained-button-file" className='cursur-pointer'>
         <Button variant="contained" className='cursur-pointer' >

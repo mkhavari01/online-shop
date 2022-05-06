@@ -25,6 +25,7 @@ const DialogForm = ({ btnName, headerTitle }) => {
   const [nameProduct,setNameProduct] = React.useState("")
   const [nameCategory,setNameCategory] = React.useState("")
   const [descriptionProduct,setDescriptionProduct] = React.useState("")
+  const [inputFile,setInputFile] = React.useState({})
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -35,6 +36,7 @@ const DialogForm = ({ btnName, headerTitle }) => {
     setNameProduct("")
     setNameCategory("")
     setDescriptionProduct("")
+    setInputFile({})
     setOpen(false);
   };
 
@@ -52,6 +54,10 @@ const DialogForm = ({ btnName, headerTitle }) => {
     setNameCategory(data)
   }
 
+  const handleInputPhotoValue = (data) => {
+    setInputFile(data)
+  }
+
   const handleDescriptionValue = (data) => {
     setDescriptionProduct(data);
   }
@@ -60,7 +66,8 @@ const DialogForm = ({ btnName, headerTitle }) => {
     console.log('handle save',{
       productName : nameProduct,
       categoryName : nameCategory,
-      description : descriptionProduct
+      description : descriptionProduct,
+      image : inputFile,
     })
   }
 
@@ -82,7 +89,7 @@ const DialogForm = ({ btnName, headerTitle }) => {
             ref={descriptionElementRef}
             tabIndex={-1}
           >
-            <InputPhoto />
+            <InputPhoto passData={handleInputPhotoValue} />
             <TextField id="name-product" hiddenLabel={true} variant="filled" placeholder="نام کالا" fullWidth className='mt-3' value={nameProduct} onChange={(e)=>setNameProduct(e.target.value)} />
             <AutoComplete passData={handleAutoCompleteValue} />
             <EditorTxt passData={handleDescriptionValue} />
