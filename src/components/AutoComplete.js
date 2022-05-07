@@ -2,7 +2,10 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from 'redux/actions/categoryAction';
+
+
 
 function sleep(delay = 0) {
   return new Promise((resolve) => {
@@ -14,13 +17,19 @@ export default function AutoComplete(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
-  const data = useSelector(state => state)
+  const dispatch = useDispatch()
+  const data = useSelector(state => state);
 
-  console.log('data is',data)
+  console.log("data is",data)
+
 
   function handleChange(e){
     props.passData(e.target.textContent);
   }
+
+  React.useEffect(()=>{
+    dispatch(fetchCategories());
+  },[])
 
   React.useEffect(() => {
     let active = true;
@@ -33,7 +42,7 @@ export default function AutoComplete(props) {
       await sleep(1); // For demo purposes.
 
       if (active) {
-        setOptions([...topFilms]);
+        setOptions([...data.categories]);
       }
     })();
 
@@ -61,8 +70,8 @@ export default function AutoComplete(props) {
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.title}
+      isOptionEqualToValue={(option, value) => option.name === value.name}
+      getOptionLabel={(option) => option.name}
       options={options}
       loading={loading}
       renderInput={(params) => (

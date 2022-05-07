@@ -71,3 +71,13 @@
   margin-bottom: 3px !important;
   margin-top: 20px;
 }
+
+.MuiAutocomplete-listbox {
+  font-family: vazir-medium !important ;
+  text-align: right !important;
+}
+
+.MuiAutocomplete-listbox li {
+  text-align: right !important;
+  direction: rtl;
+}
