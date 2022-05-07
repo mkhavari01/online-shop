@@ -10,6 +10,8 @@ import TextField from '@mui/material/TextField';
 import AutoComplete from 'components/AutoComplete'
 import EditorTxt from './EditorTxt';
 import InputPhoto from './InputPhoto';
+import { useSelector } from 'react-redux';
+
 
 
 const Input = styled('input')({
@@ -22,8 +24,11 @@ const DialogForm = ({ btnName, headerTitle }) => {
   const [scroll, setScroll] = React.useState('paper');
   const [nameProduct,setNameProduct] = React.useState("")
   const [nameCategory,setNameCategory] = React.useState("")
+  const [nameSubCategory,setSubNameCategory] = React.useState("")
   const [descriptionProduct,setDescriptionProduct] = React.useState("")
-  const [inputFile,setInputFile] = React.useState({})
+  const [inputFile,setInputFile] = React.useState({});
+  const data = useSelector(state => state);
+
 
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
@@ -52,6 +57,10 @@ const DialogForm = ({ btnName, headerTitle }) => {
     setNameCategory(data)
   }
 
+  const handleAutoCompleteValue2 = (data) => {
+    setSubNameCategory(data)
+  }
+
   const handleInputPhotoValue = (data) => {
     setInputFile(data)
   }
@@ -63,7 +72,8 @@ const DialogForm = ({ btnName, headerTitle }) => {
   const handleSave = () => {
     console.log('handle save',{
       productName : nameProduct,
-      categoryName : nameCategory,
+      categoryName : nameCategory.name,
+      subGroupName : nameSubCategory.title,
       description : descriptionProduct,
       image : inputFile,
     })
@@ -88,7 +98,8 @@ const DialogForm = ({ btnName, headerTitle }) => {
           >
             <InputPhoto passData={handleInputPhotoValue} />
             <TextField id="name-product" hiddenLabel={true} variant="filled" placeholder="نام کالا" fullWidth className='mt-3' value={nameProduct} onChange={(e)=>setNameProduct(e.target.value)} />
-            <AutoComplete passData={handleAutoCompleteValue} />
+            <AutoComplete passData={handleAutoCompleteValue} arrayData={data.categories} subData={"name"} placeholder="سرگروه" />
+            {nameCategory ? <AutoComplete subGroup={true} passData={handleAutoCompleteValue2} arrayData={nameCategory.subGroups} subData={"title"} placeholder="زیر گروه" /> : ""}
             <EditorTxt passData={handleDescriptionValue} />
           </DialogContentText>
         </DialogContent>

@@ -17,19 +17,15 @@ export default function AutoComplete(props) {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
-  const dispatch = useDispatch()
-  const data = useSelector(state => state);
+  const dispatch = useDispatch();
 
-  console.log("data is",data)
-
-
-  function handleChange(e){
-    props.passData(e.target.textContent);
+  function handleChange(e) {
+    props.subGroup ? props.passData(props.arrayData.find(item => item.title === e.target.textContent )) : props.passData(props.arrayData.find(item => item.name === e.target.textContent ));
   }
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     dispatch(fetchCategories());
-  },[])
+  }, [])
 
   React.useEffect(() => {
     let active = true;
@@ -39,10 +35,11 @@ export default function AutoComplete(props) {
     }
 
     (async () => {
-      await sleep(1); // For demo purposes.
+      await sleep(1000); // For demo purposes.
 
       if (active) {
-        setOptions([...data.categories]);
+        console.log(props.arrayData,"propsArrayData")
+        setOptions([...props.arrayData]);
       }
     })();
 
@@ -59,7 +56,7 @@ export default function AutoComplete(props) {
 
   return (
     <Autocomplete
-      onChange={e=>handleChange(e)}
+      onChange={e => handleChange(e)}
       className='mt-3'
       id="asynchronous-demo"
       // sx={{ width: 300 }}
@@ -70,8 +67,8 @@ export default function AutoComplete(props) {
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.name === value.name}
-      getOptionLabel={(option) => option.name}
+      isOptionEqualToValue={(option, value) => option[props.subData] === value[props.subData]}
+      getOptionLabel={(option) => option[props.subData]}
       options={options}
       loading={loading}
       renderInput={(params) => (
@@ -80,7 +77,7 @@ export default function AutoComplete(props) {
           hiddenLabel={true}
           fullWidth
           variant="filled"
-          placeholder="دسته بندی"
+          placeholder={props.placeholder}
           InputProps={{
             ...params.InputProps,
             endAdornment: (
@@ -95,54 +92,3 @@ export default function AutoComplete(props) {
     />
   );
 }
-
-// Top films as rated by IMDb users. http://www.imdb.com/chart/top
-const topFilms = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 },
-  { title: "Schindler's List", year: 1993 },
-  { title: 'Pulp Fiction', year: 1994 },
-  {
-    title: 'The Lord of the Rings: The Return of the King',
-    year: 2003,
-  },
-  { title: 'The Good, the Bad and the Ugly', year: 1966 },
-  { title: 'Fight Club', year: 1999 },
-  {
-    title: 'The Lord of the Rings: The Fellowship of the Ring',
-    year: 2001,
-  },
-  {
-    title: 'Star Wars: Episode V - The Empire Strikes Back',
-    year: 1980,
-  },
-  { title: 'Forrest Gump', year: 1994 },
-  { title: 'Inception', year: 2010 },
-  {
-    title: 'The Lord of the Rings: The Two Towers',
-    year: 2002,
-  },
-  { title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-  { title: 'Goodfellas', year: 1990 },
-  { title: 'The Matrix', year: 1999 },
-  { title: 'Seven Samurai', year: 1954 },
-  {
-    title: 'Star Wars: Episode IV - A New Hope',
-    year: 1977,
-  },
-  { title: 'City of God', year: 2002 },
-  { title: 'Se7en', year: 1995 },
-  { title: 'The Silence of the Lambs', year: 1991 },
-  { title: "It's a Wonderful Life", year: 1946 },
-  { title: 'Life Is Beautiful', year: 1997 },
-  { title: 'The Usual Suspects', year: 1995 },
-  { title: 'Léon: The Professional', year: 1994 },
-  { title: 'Spirited Away', year: 2001 },
-  { title: 'Saving Private Ryan', year: 1998 },
-  { title: 'Once Upon a Time in the West', year: 1968 },
-  { title: 'American History X', year: 1998 },
-  { title: 'Interstellar', year: 2014 },
-];
