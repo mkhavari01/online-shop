@@ -12,7 +12,7 @@ import EditorTxt from './EditorTxt';
 import InputPhoto from './InputPhoto';
 import { useSelector } from 'react-redux';
 
-
+import axios from 'axios';
 
 const Input = styled('input')({
   display: 'none',
@@ -70,13 +70,42 @@ const DialogForm = ({ btnName, headerTitle }) => {
   }
 
   const handleSave = () => {
-    console.log('handle save',{
-      productName : nameProduct,
-      categoryName : nameCategory.name,
-      subGroupName : nameSubCategory.title,
+    var myHeaders = new Headers();
+    myHeaders.append("Token", localStorage.getItem("token"));
+    // myHeaders.append("Content-Type", "application/json");
+    let data2 = {
+      name : nameProduct,
+      headgroup : nameCategory.name,
+      group : nameSubCategory.title,
       description : descriptionProduct,
       image : inputFile,
+      price : "0",
+      quantity : 0
+    }
+    let formdata = new FormData();
+    // formdata.append("name", "surface pro laptop");
+    // formdata.append("brand", "microsoft");
+    // formdata.append("image", fileInput.files[0], "[PROXY]");
+    // formdata.append("price", "1500");
+    Object.keys(data2).forEach((el)=>{
+      if(el == "image"){
+        formdata.append(el,data2[el],"[PROXY]")
+      }else {
+        formdata.append(el,data2[el])
+      }
     })
+
+    let requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch(`${process.env.REACT_APP_BACKEND_URL}` + `/products`, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   }
 
   return (

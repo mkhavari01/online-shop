@@ -305,7 +305,7 @@
 	"variable": [
 		{
 			"key": "SERVER",
-			"value": "http://localhost:3000"
+			"value": "http://localhost:3001"
 		},
 		{
 			"key": "TOKEN",
