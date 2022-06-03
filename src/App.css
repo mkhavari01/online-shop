@@ -81,3 +81,7 @@
   text-align: right !important;
   direction: rtl;
 }
+
+tr {
+  vertical-align: middle;
+}
